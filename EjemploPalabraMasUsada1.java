@@ -261,8 +261,7 @@ class MiHebra1 extends Thread {
   private final Vector<String> vectorLineas;
   private final Map<String,Integer> cuentaPalabras;
 
-  public MiHebra1( int miId, int numHebras, Vector<String> vectorLineas,
-                   Map<String,Integer> cuentaPalabras ) {
+  public MiHebra1( int miId, int numHebras, Vector<String> vectorLineas, Map<String,Integer> cuentaPalabras ) {
     this.miId           = miId;
     this.numHebras      = numHebras;
     this.vectorLineas   = vectorLineas;
