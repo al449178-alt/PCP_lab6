@@ -112,8 +112,7 @@ class EjemploPalabraMasUsada6 {
     // Implementacion paralela 6: Uso de CHM escalable con AtomicInteger
     // ...
         t1 = System.nanoTime();
-        ConcurrentHashMap<String,AtomicInteger> chmCuentaPalabras =
-                new ConcurrentHashMap<String,AtomicInteger>( 1000, 0.75F );
+        ConcurrentHashMap<String,AtomicInteger> chmCuentaPalabras = new ConcurrentHashMap<String,AtomicInteger>( 1000, 0.75F );
         MiHebra6 vt6[] = new MiHebra6[ numHebras ];
         for( int i = 0; i < numHebras; i++ ) {
             vt6[ i ] = new MiHebra6( i, numHebras, vectorLineas, chmCuentaPalabras );
