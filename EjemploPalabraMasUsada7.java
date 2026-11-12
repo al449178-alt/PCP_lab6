@@ -115,7 +115,7 @@ class EjemploPalabraMasUsada7 {
     // ...
 
 
- */
+
     //
     // Implementacion paralela 7: Uso de CHM escalable con AtomicInteger y 256 niv.
     // ...
@@ -260,30 +260,3 @@ class EjemploPalabraMasUsada7 {
 }
 
 // ============================================================================
-class MiHebra6 extends Thread {
-    // ===========================================================================
-    private final int miId;
-    private final int numHebras;
-    private final Vector<String> vectorLineas;
-    private final ConcurrentHashMap<String,AtomicInteger> cuentaPalabras;
-
-    public MiHebra6( int miId, int numHebras, Vector<String> vectorLineas, ConcurrentHashMap<String,AtomicInteger> cuentaPalabras ) {
-        this.miId           = miId;
-        this.numHebras      = numHebras;
-        this.vectorLineas   = vectorLineas;
-        this.cuentaPalabras = cuentaPalabras;
-    }
-
-    public void run() {
-        for( int i = miId; i < vectorLineas.size(); i += numHebras ) {
-            String[] palabras = vectorLineas.get( i ).split( "\\W+" );
-            for( int j = 0; j < palabras.length; j++ ) {
-                String palabraActual = palabras[ j ].trim();
-                if( palabraActual.length() > 0 ) {
-                    EjemploPalabraMasUsada6.contabilizaPalabra6( cuentaPalabras,
-                            palabraActual );
-                }
-            }
-        }
-    }
-}
