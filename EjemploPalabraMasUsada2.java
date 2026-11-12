@@ -108,9 +108,9 @@ class EjemploPalabraMasUsada2 {
     t1 = System.nanoTime();
     Hashtable<String,Integer> htCuentaPalabras =
         new Hashtable<String,Integer>( 1000, 0.75F );
-    MiHebra1 vt1[] = new MiHebra1[ numHebras ];
+    MiHebra2 vt1[] = new MiHebra2[ numHebras ];
     for( int i = 0; i < numHebras; i++ ) {
-      vt1[ i ] = new MiHebra1( i, numHebras, vectorLineas, htCuentaPalabras );
+      vt1[ i ] = new MiHebra2( i, numHebras, vectorLineas, htCuentaPalabras );
       vt1[ i ].start();
     }
     for( int i = 0; i < numHebras; i++ ) {
@@ -249,5 +249,32 @@ class EjemploPalabraMasUsada2 {
       i++;
     }
     System.out.println( "-----------------" );
+  }
+}
+
+class MiHebra2 extends Thread {
+
+  private final int miId;
+  private final int numHebras;
+  private final Vector<String> vectorLineas;
+  private final Map<String,Integer> cuentaPalabras;
+
+  public MiHebra2( int miId, int numHebras, Vector<String> vectorLineas, Map<String,Integer> cuentaPalabras ) {
+    this.miId           = miId;
+    this.numHebras      = numHebras;
+    this.vectorLineas   = vectorLineas;
+    this.cuentaPalabras = cuentaPalabras;
+  }
+
+  public void run() {
+    for( int i = miId; i < vectorLineas.size(); i += numHebras ) {
+      String[] palabras = vectorLineas.get( i ).split( "\\W+" );
+      for( int j = 0; j < palabras.length; j++ ) {
+        String palabraActual = palabras[ j ].trim();
+        if( palabraActual.length() > 0 ) {
+          EjemploPalabraMasUsada1.contabilizaPalabra1( cuentaPalabras, palabraActual );
+        }
+      }
+    }
   }
 }
